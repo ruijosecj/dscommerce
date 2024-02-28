@@ -3,20 +3,18 @@ package ruijosecj.entities;
 import java.time.Instant;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_order")
-public class Order {
+@Table(name="tb_payment")
+public class Payment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +22,10 @@ public class Order {
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
-	private OrderStatus status;
 	
-	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private User client;
-	
-	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-	private Payment payment;
+	@OneToOne
+	@MapsId
+	private Order order;
 
 	public Long getId() {
 		return id;
@@ -49,28 +43,12 @@ public class Order {
 		this.moment = moment;
 	}
 
-	public OrderStatus getStatus() {
-		return status;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setStatus(OrderStatus status) {
-		this.status = status;
-	}
-
-	public User getClient() {
-		return client;
-	}
-
-	public void setClient(User client) {
-		this.client = client;
-	}
-
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	@Override
@@ -86,7 +64,7 @@ public class Order {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Order other = (Order) obj;
+		Payment other = (Payment) obj;
 		return Objects.equals(id, other.id);
 	}
 	
