@@ -1,5 +1,6 @@
 package ruijosecj.entities;
 
 public enum OrderStatus {
-	WAITTING_PAYMENT, PAID, SHIPPED, DELIVERED, CANCELED;
+
+    WAITING_PAYMENT, PAID, SHIPPED, DELIVERED, CANCELED;
 }
