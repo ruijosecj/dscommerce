@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import jakarta.validation.Valid;
 import ruijosecj.dto.ProductDTO;
+import ruijosecj.dto.ProductMinDTO;
 import ruijosecj.services.ProductService;
 
 @RestController
@@ -35,8 +36,8 @@ public class ProductController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable) {
-		Page<ProductDTO> dto =  service.findAll(pageable);
+	public ResponseEntity<Page<ProductMinDTO>> findAll(Pageable pageable) {
+		Page<ProductMinDTO> dto =  service.findAll(pageable);
 		return ResponseEntity.ok(dto);
 	}
 	
