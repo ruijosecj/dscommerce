@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import ruijosecj.entities.Category;
@@ -21,6 +22,7 @@ public class ProductDTO {
 	@NotBlank(message = "Campo requerido")
 	private String description;
 	
+	@NotNull(message = "Campo requerido")
 	@Positive(message = "O preço deve ser positivo")
 	private Double price;
 	private String imgUrl;
